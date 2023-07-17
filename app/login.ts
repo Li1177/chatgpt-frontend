@@ -1,52 +1,38 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
+import RegisterPage from './register';
 
-// API接口
-const getCodeAPI = (phone) => {
-  console.log('获取验证码', phone); 
-}
-
-const registerAPI = (phone, code) => {
-  console.log('提交注册', phone, code);
-}
-
-const RegisterPage = () => {
+const LoginPage = () => {
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
 
-  const getCode = () => {
-    getCodeAPI(phone);
-  };
-
-  const register = () => {
-    registerAPI(phone, code);
+  const handleLogin = () => {
+    // 调用部署在ngrok上的后端登录接口
+    fetch('https://f4f8-114-246-218-115.ngrok-free.app/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone,
+        code
+      })
+    }).then(res => {
+      console.log('登录成功');
+    });
   };
 
   return (
-    <Form>
-      <Form.Item>
-        <Input
-          placeholder="手机号"
-          onChange={e => setPhone(e.target.value)}
-        />
-      </Form.Item>
+    <>
+      <Form>
+        {/* 登录表单 */}
+      </Form>
 
-      <Form.Item>
-        <Button onClick={getCode}>获取验证码</Button>
-      </Form.Item>
-
-      <Form.Item>
-        <Input
-          placeholder="验证码"
-          onChange={e => setCode(e.target.value)}  
-        />
-      </Form.Item>
-      
-      <Form.Item>
-        <Button onClick={register}>注册</Button>
-      </Form.Item>
-    </Form>
+      <div>
+        还没有账号？<RegisterPage />
+      </div>
+    </>
   );
-}
+};
 
-export default RegisterPage;
+export default LoginPage;
