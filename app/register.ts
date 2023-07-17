@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
 // API接口
@@ -11,7 +11,6 @@ const registerAPI = (phone, code) => {
 }
 
 const RegisterPage = () => {
-
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
 
