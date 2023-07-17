@@ -3,12 +3,12 @@ import { Form, Input, Button } from 'antd';
 
 // API接口
 const getCodeAPI = (phone) => {
-  console.log('获取验证码', phone); 
-}
+  console.log('获取验证码', phone);
+};
 
 const registerAPI = (phone, code) => {
   console.log('提交注册', phone, code);
-}
+};
 
 const RegisterPage = () => {
   const [phone, setPhone] = useState('');
@@ -27,7 +27,7 @@ const RegisterPage = () => {
       <Form.Item>
         <Input
           placeholder="手机号"
-          onChange={e => setPhone(e.target.value)}
+          onChange={(e) => setPhone(e.target.value)}
         />
       </Form.Item>
 
@@ -38,15 +38,15 @@ const RegisterPage = () => {
       <Form.Item>
         <Input
           placeholder="验证码"
-          onChange={e => setCode(e.target.value)}  
+          onChange={(e) => setCode(e.target.value)}
         />
       </Form.Item>
-      
+
       <Form.Item>
         <Button onClick={register}>注册</Button>
       </Form.Item>
     </Form>
   );
-}
+};
 
 export default RegisterPage;
